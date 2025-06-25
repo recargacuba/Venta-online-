@@ -502,8 +502,8 @@
         .info-banner::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
+            top: -200%;
+            left: -200%;
             width: 200%;
             height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 170%);
@@ -661,6 +661,115 @@
             border-radius: 2px;
         }
 
+        /* Filtros de búsqueda y categorías */
+        .search-filter-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        @media (min-width: 768px) {
+            .search-filter-container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .search-box {
+            position: relative;
+            flex-grow: 1;
+            max-width: 500px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(255, 214, 0, 0.3);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .category-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .category-filter label {
+            margin-right: 10px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .category-btn {
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .category-btn:hover {
+            background: rgba(255, 214, 0, 0.2);
+            color: var(--accent-color);
+        }
+
+        .category-btn.active {
+            background: var(--accent-color);
+            color: var(--dark-text);
+            font-weight: 600;
+            border-color: var(--accent-color);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            grid-column: 1 / -1;
+        }
+
+        .no-results i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: block;
+            color: var(--primary-light);
+        }
+
+        /* Servicios */
         .services-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -793,6 +902,75 @@
 
         .btn-buy:hover {
             animation: pulse 1.5s infinite;
+        }
+
+        /* Estilos para los botones de compartir */
+        .share-buttons {
+            margin-top: 15px;
+            position: relative;
+        }
+
+        .btn-share {
+            width: 100%;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-muted);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-share:hover {
+            background: rgba(255, 214, 0, 0.2);
+            color: var(--accent-color);
+        }
+
+        .share-options {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .share-option {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .share-option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .share-option[data-platform="whatsapp"] {
+            background: #25D366;
+        }
+
+        .share-option[data-platform="telegram"] {
+            background: #0088cc;
+        }
+
+        .share-option[data-platform="facebook"] {
+            background: #3b5998;
+        }
+
+        .share-option[data-platform="twitter"] {
+            background: #1DA1F2;
+        }
+
+        .share-option[data-platform="copy"] {
+            background: var(--primary-color);
         }
 
         /* Reseller Section */
@@ -1421,7 +1599,7 @@
         <div class="container">
             <div class="navbar">
                 <a href="#" class="logo">
-                    <i class="fas fa-store-alt"></i> <span>Tienda Vende</span>
+                    <i class="fas fa-store-alt"></i> <span>ECOmercado </span>
                 </a>
                 <div class="menu-toggle" id="mobile-menu">
                     <span></span>
@@ -1453,12 +1631,12 @@
         <!-- Hero Section -->
         <section class="hero" id="inicio">
             <div class="container">
-                <h1 class="animate">Servicios Digitales Premium</h1>
-                <p class="animate">📡 Somos una tienda en línea en crecimiento, ofrecemos diversos servicios digitales para Cuba y el mundo con la mejor calidad y soporte.</p>
+                <h1 class="animate">PUNTO DE VENTA ECOmercado </h1>
+                <p class="animate">Somos una tienda en línea en crecimiento, ofrecemos diversos productos para Cuba y el mundo con la mejor calidad y soporte.</p>
                 
                 <!-- Banner Informativo -->
                 <div class="info-banner animate">
-                    <p><i class="fas fa-info-circle"></i> Todos nuestros servicios incluyen garantía y soporte 24/7. Métodos de pago: Transfermovil, Enzona y MLC.</p>
+                    <p><i class="fas fa-info-circle"></i> Todos nuestros productos incluyen garantía Métodos de pago: Transfermovil, Enzona y MLC.</p>
                 </div>
                 
                 <div class="hero-btns">
@@ -1466,7 +1644,7 @@
                         <i class="fab fa-telegram"></i> Únete a nuestro canal
                     </a>
                     <a href="#servicios" class="btn btn-secondary animate">
-                        <i class="fas fa-tv"></i> Ver Servicios
+                        <i class="fas fa-tv"></i> Ver productos 
                     </a>
                 </div>
             </div>
@@ -1476,12 +1654,32 @@
         <section class="services" id="servicios">
             <div class="container">
                 <div class="section-title">
-                    <h2>Nuestros Servicios Premium</h2>
-                    <p>Ofrecemos las mejores plataformas de streaming y herramientas digitales al mejor precio del mercado</p>
+                    <h2>Nuestros productos Premium</h2>
+                    <p>Ofrecemos las mejores productis y herramientas digitales al mejor precio del mercado</p>
+                </div>
+                
+                <!-- Filtros de búsqueda y categorías -->
+                <div class="search-filter-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Buscar productos...">
+                    </div>
+                    
+                    <div class="category-filter">
+                        <label>Filtrar por:</label>
+                        <div class="category-buttons" id="categoryButtons">
+                            <button class="category-btn active" data-category="all">Todos</button>
+                            <!-- Las categorías se agregarán dinámicamente desde JavaScript -->
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="services-grid" id="servicesGrid">
                     <!-- Los servicios se cargarán dinámicamente aquí -->
+                    <div class="no-results" id="noResults" style="display: none;">
+                        <i class="fas fa-search"></i>
+                        <p>No se encontraron productos que coincidan con tu búsqueda.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1520,7 +1718,7 @@
                     </div>
                     
                     <div class="warning-box animate">
-                        <p><i class="fas fa-exclamation-triangle"></i> NO SE HACEN DEVOLUCIONES EN CUANTO SE LE ACTIVA UN SERVICIO, A MENOS QUE DE POR NUESTRA PARTE, NO PODAMOS GARANTIZARLO</p>
+                        <p><i class="fas fa-exclamation-triangle"></i> SOLO VENDER PRODUCTOS QUE ESTEN DISPONIBLE EN NUETRA TIENDA</p>
                     </div>
                     
                     <div class="reseller-contact animate">
@@ -1541,11 +1739,10 @@
                         <div class="footer-logo">
                             <i class="fas fa-store-alt"></i> Tienda Vende
                         </div>
-                        <p>📡 Servicios digitales premium para Cuba y el mundo con la mejor calidad y soporte técnico.</p>
+                        <p>📡 Servicios DE PRODUCTOS  premium para Cuba y el mundo con la mejor calidad y soporte técnico.</p>
                         <div class="social-links">
                             <a href="https://t.me/tiendavende"><i class="fab fa-telegram"></i></a>
-                            <a href="#"><i class="fab fa-whatsapp"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            
                         </div>
                     </div>
                     
@@ -1564,13 +1761,12 @@
                         <ul class="footer-links">
                             <li><a href="https://t.me/tiendavende"><i class="fab fa-telegram"></i> Canal Oficial</a></li>
                             <li><a href="https://t.me/tiendavende"><i class="fab fa-telegram"></i> Soporte Técnico</a></li>
-                            <li><a href="#"><i class="fas fa-envelope"></i> Email</a></li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="copyright">
-                    <p>© 2024 Tienda Vende. Todos los derechos reservados.</p>
+                    <p>© 2025 Tienda Vende. Todos los derechos reservados.</p>
                 </div>
             </div>
         </footer>
@@ -1608,6 +1804,11 @@
                     <div class="form-group">
                         <label for="serviceImageUrl">URL de la Imagen:</label>
                         <input type="url" id="serviceImageUrl" placeholder="https://ejemplo.com/imagen.jpg">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="serviceCategory">Categoría:</label>
+                        <input type="text" id="serviceCategory" placeholder="Ej: Streaming, VPN, Juegos" required>
                     </div>
                     
                     <button type="submit" class="btn btn-primary">Agregar Servicio</button>
@@ -1673,7 +1874,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
 
     <script>
-        // Configuración de Firebase
+        // Configuración de Firebase (TUS CREDENCIALES)
         const firebaseConfig = {
             apiKey: "AIzaSyD3wwF3-E02dRP7Z8MH1k11UeR_pVqL66k",
             authDomain: "tienda-e1a2e.firebaseapp.com",
@@ -1705,10 +1906,15 @@
         const closeBanner = document.getElementById('closeBanner');
         const announcementsModal = document.getElementById('announcementsModal');
         const announcementsLink = document.getElementById('announcements-link');
+        const searchInput = document.getElementById('searchInput');
+        const categoryButtons = document.getElementById('categoryButtons');
+        const noResults = document.getElementById('noResults');
         
         // Variables de estado
         let isAdmin = false;
         let currentEditingServiceId = null;
+        let allServices = [];
+        let categories = new Set(['all']); // Usamos un Set para evitar duplicados
 
         // Función para verificar autenticación
         function checkAuth() {
@@ -1782,6 +1988,7 @@
                             <h4><i class="${service.icon || 'fas fa-question'}"></i> ${service.name || 'Sin nombre'}</h4>
                             ${imageHtml}
                             <p class="price">${service.price || 'Precio no especificado'}</p>
+                            <p><strong>Categoría:</strong> ${service.category || 'Sin categoría'}</p>
                             ${featuresHtml}
                             <div class="service-actions">
                                 <button class="btn-edit" onclick="editService('${service.id}')">
@@ -1806,6 +2013,8 @@
             servicesRef.on('value', (snapshot) => {
                 const servicesData = snapshot.val();
                 servicesGrid.innerHTML = '';
+                allServices = [];
+                categories = new Set(['all']); // Resetear categorías
                 
                 if (servicesData) {
                     // Convertir a array y ordenar por timestamp (más reciente primero)
@@ -1814,50 +2023,240 @@
                         ...service
                     })).sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
                     
+                    allServices = servicesArray; // Guardar todos los servicios para filtrado
+                    
+                    // Obtener todas las categorías únicas
                     servicesArray.forEach(service => {
-                        const serviceCard = document.createElement('div');
-                        serviceCard.className = 'service-card animate';
-                        serviceCard.setAttribute('data-id', service.id);
-                        
-                        // Crear lista de características
-                        let featuresHtml = '';
-                        if (service.features && Array.isArray(service.features)) {
-                            service.features.forEach(feature => {
-                                featuresHtml += `<li>${feature}</li>`;
-                            });
+                        if (service.category) {
+                            categories.add(service.category.toLowerCase());
                         }
-                        
-                        // Mostrar imagen si existe
-                        const imageHtml = service.imageUrl ? 
-                            `<div class="service-image" style="background-image: url('${service.imageUrl}');"></div>` : 
-                            '';
-                        
-                        serviceCard.innerHTML = `
-                            ${imageHtml}
-                            <div class="service-header">
-                                <i class="${service.icon || 'fas fa-question'}"></i>
-                                <h3>${service.name || 'Sin nombre'}</h3>
-                            </div>
-                            <div class="service-body">
-                                <ul class="service-features">
-                                    ${featuresHtml}
-                                </ul>
-                                <div class="price">${service.price || 'Precio no especificado'}</div>
-                            </div>
-                            <div class="service-footer">
-                                <button class="btn btn-primary btn-buy" data-service="${service.name}" data-price="${service.price}">
-                                    <i class="fas fa-shopping-cart"></i> Comprar Ahora
-                                </button>
-                            </div>
-                        `;
-                        
-                        servicesGrid.appendChild(serviceCard);
-                        
-                        // Añadir evento al botón de compra
-                        serviceCard.querySelector('.btn-buy').addEventListener('click', function() {
-                            openPurchaseModal(this);
-                        });
                     });
+                    
+                    // Actualizar botones de categoría
+                    updateCategoryButtons();
+                    
+                    // Mostrar todos los servicios inicialmente
+                    renderServices(servicesArray);
+                }
+            });
+        }
+
+        // Actualizar los botones de categoría
+        function updateCategoryButtons() {
+            categoryButtons.innerHTML = '';
+            
+            // Botón "Todos"
+            const allButton = document.createElement('button');
+            allButton.className = 'category-btn active';
+            allButton.dataset.category = 'all';
+            allButton.textContent = 'Todos';
+            allButton.addEventListener('click', filterByCategory);
+            categoryButtons.appendChild(allButton);
+            
+            // Botones para cada categoría
+            categories.forEach(category => {
+                if (category !== 'all') {
+                    const button = document.createElement('button');
+                    button.className = 'category-btn';
+                    button.dataset.category = category.toLowerCase();
+                    button.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+                    button.addEventListener('click', filterByCategory);
+                    categoryButtons.appendChild(button);
+                }
+            });
+        }
+
+        // Filtrar servicios por categoría
+        function filterByCategory(e) {
+            const category = e.currentTarget.dataset.category;
+            
+            // Actualizar estado activo de los botones
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            e.currentTarget.classList.add('active');
+            
+            // Filtrar servicios
+            if (category === 'all') {
+                renderServices(allServices);
+            } else {
+                const filteredServices = allServices.filter(service => 
+                    service.category && service.category.toLowerCase() === category
+                );
+                renderServices(filteredServices);
+            }
+            
+            // También aplicar el filtro de búsqueda si hay texto
+            if (searchInput.value) {
+                searchServices();
+            }
+        }
+
+        // Buscar servicios por texto
+        function searchServices() {
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            // Obtener la categoría activa
+            const activeCategory = document.querySelector('.category-btn.active').dataset.category;
+            
+            // Filtrar servicios
+            let filteredServices = allServices;
+            
+            // Aplicar filtro de categoría primero
+            if (activeCategory && activeCategory !== 'all') {
+                filteredServices = filteredServices.filter(service => 
+                    service.category && service.category.toLowerCase() === activeCategory
+                );
+            }
+            
+            // Aplicar filtro de búsqueda
+            if (searchTerm) {
+                filteredServices = filteredServices.filter(service => 
+                    (service.name && service.name.toLowerCase().includes(searchTerm)) ||
+                    (service.category && service.category.toLowerCase().includes(searchTerm)) ||
+                    (service.features && service.features.some(feature => 
+                        feature.toLowerCase().includes(searchTerm)
+                    ))
+                );
+            }
+            
+            renderServices(filteredServices);
+        }
+
+        // Renderizar servicios en el grid
+        function renderServices(services) {
+            servicesGrid.innerHTML = '';
+            
+            if (services.length === 0) {
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            noResults.style.display = 'none';
+            
+            services.forEach(service => {
+                const serviceCard = document.createElement('div');
+                serviceCard.className = 'service-card animate';
+                serviceCard.setAttribute('data-id', service.id);
+                serviceCard.setAttribute('data-category', service.category ? service.category.toLowerCase() : '');
+                
+                // Crear lista de características
+                let featuresHtml = '';
+                if (service.features && Array.isArray(service.features)) {
+                    service.features.forEach(feature => {
+                        featuresHtml += `<li>${feature}</li>`;
+                    });
+                }
+                
+                // Mostrar imagen si existe
+                const imageHtml = service.imageUrl ? 
+                    `<div class="service-image" style="background-image: url('${service.imageUrl}');"></div>` : 
+                    '';
+                
+                serviceCard.innerHTML = `
+                    ${imageHtml}
+                    <div class="service-header">
+                        <i class="${service.icon || 'fas fa-question'}"></i>
+                        <h3>${service.name || 'Sin nombre'}</h3>
+                    </div>
+                    <div class="service-body">
+                        <ul class="service-features">
+                            ${featuresHtml}
+                        </ul>
+                        <div class="price">${service.price || 'Precio no especificado'}</div>
+                    </div>
+                    <div class="service-footer">
+                        <button class="btn btn-primary btn-buy" data-service="${service.name}" data-price="${service.price}">
+                            <i class="fas fa-shopping-cart"></i> Comprar Ahora
+                        </button>
+                        <div class="share-buttons">
+                            <button class="btn-share" data-service="${service.name}" data-price="${service.price}">
+                                <i class="fas fa-share-alt"></i> Compartir
+                            </button>
+                            <div class="share-options" style="display: none;">
+                                <a href="#" class="share-option" data-platform="whatsapp"><i class="fab fa-whatsapp"></i></a>
+                                <a href="#" class="share-option" data-platform="telegram"><i class="fab fa-telegram"></i></a>
+                                <a href="#" class="share-option" data-platform="facebook"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="share-option" data-platform="twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="share-option" data-platform="copy"><i class="fas fa-copy"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                servicesGrid.appendChild(serviceCard);
+                
+                // Añadir evento al botón de compra
+                serviceCard.querySelector('.btn-buy').addEventListener('click', function() {
+                    openPurchaseModal(this);
+                });
+            });
+        }
+
+        // Función para compartir productos
+        function setupShareButtons() {
+            document.addEventListener('click', function(e) {
+                // Mostrar/ocultar opciones de compartir
+                if (e.target.classList.contains('btn-share')) {
+                    const shareOptions = e.target.nextElementSibling;
+                    shareOptions.style.display = shareOptions.style.display === 'flex' ? 'none' : 'flex';
+                    return;
+                }
+                
+                // Cerrar opciones de compartir al hacer clic fuera
+                if (!e.target.closest('.share-buttons')) {
+                    document.querySelectorAll('.share-options').forEach(el => {
+                        el.style.display = 'none';
+                    });
+                }
+            });
+
+            // Manejar clic en opciones de compartir
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('share-option') || e.target.closest('.share-option')) {
+                    e.preventDefault();
+                    const option = e.target.closest('.share-option');
+                    const platform = option.dataset.platform;
+                    const serviceCard = option.closest('.service-card');
+                    const serviceName = serviceCard.querySelector('h3').textContent;
+                    const servicePrice = serviceCard.querySelector('.price').textContent;
+                    const serviceImage = serviceCard.querySelector('.service-image')?.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/)?.[1] || '';
+                    
+                    const shareText = `¡Mira este producto en Tienda Vende! 🛒\n\n${serviceName}\nPrecio: ${servicePrice}\n\nMás productos en: ${window.location.href}`;
+                    const shareUrl = window.location.href;
+                    
+                    switch(platform) {
+                        case 'whatsapp':
+                            window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank');
+                            break;
+                        case 'telegram':
+                            window.open(`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`, '_blank');
+                            break;
+                        case 'facebook':
+                            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(shareText)}`, '_blank');
+                            break;
+                        case 'twitter':
+                            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`, '_blank');
+                            break;
+                        case 'copy':
+                            navigator.clipboard.writeText(shareText).then(() => {
+                                alert('¡Enlace copiado al portapapeles!');
+                            }).catch(err => {
+                                console.error('Error al copiar: ', err);
+                                // Fallback para navegadores antiguos
+                                const textarea = document.createElement('textarea');
+                                textarea.value = shareText;
+                                document.body.appendChild(textarea);
+                                textarea.select();
+                                document.execCommand('copy');
+                                document.body.removeChild(textarea);
+                                alert('¡Enlace copiado al portapapeles!');
+                            });
+                            break;
+                    }
+                    
+                    // Ocultar opciones después de compartir
+                    option.closest('.share-options').style.display = 'none';
                 }
             });
         }
@@ -1959,6 +2358,7 @@
             const price = document.getElementById('servicePrice').value.trim();
             const description = document.getElementById('serviceDescription').value.trim();
             const imageUrl = document.getElementById('serviceImageUrl').value.trim();
+            const category = document.getElementById('serviceCategory').value.trim();
             
             // Convertir la descripción en un array de características
             const features = description.split(',').map(item => item.trim()).filter(item => item);
@@ -1970,6 +2370,7 @@
                 price: price,
                 features: features,
                 imageUrl: imageUrl || '',
+                category: category || 'Otros',
                 timestamp: firebase.database.ServerValue.TIMESTAMP
             };
             
@@ -2013,6 +2414,7 @@
                     document.getElementById('servicePrice').value = service.price || '';
                     document.getElementById('serviceDescription').value = service.features?.join(', ') || '';
                     document.getElementById('serviceImageUrl').value = service.imageUrl || '';
+                    document.getElementById('serviceCategory').value = service.category || '';
                     
                     // Cambiar el botón del formulario a "Actualizar"
                     const submitButton = addServiceForm.querySelector('button[type="submit"]');
@@ -2056,16 +2458,16 @@
             modalMessage.innerHTML = `
                 <div style="margin-bottom: 15px;">
                     <p style="font-weight: bold; margin-bottom: 8px; font-size: 1.1rem;">📋 Resumen de compra:</p>
-                    <p><strong>Servicio:</strong> ${service || 'No especificado'}</p>
+                    <p><strong>Producto:</strong> ${service || 'No especificado'}</p>
                     <p><strong>Precio:</strong> ${price || 'No especificado'}</p>
                 </div>
                 <p style="margin-bottom: 5px;">Serás redirigido al chat con @tiendavende en Telegram para completar tu compra.</p>
-                <p style="font-size: 0.9rem; opacity: 0.8;"><i class="fas fa-info-circle"></i> Todos los servicios incluyen garantía y soporte.</p>
+                <p style="font-size: 0.9rem; opacity: 0.8;"><i class="fas fa-info-circle"></i> Todos los productos son nuevo.</p>
             `;
             
             // Actualizar el enlace de Telegram
             const telegramLink = document.getElementById('telegramDirectLink');
-            telegramLink.href = `https://t.me/tiendavende?text=Hola,%20estoy%20interesado%20en%20comprar%20el%20servicio%20${encodeURIComponent(service)}%20por%20${encodeURIComponent(price)}`;
+            telegramLink.href = `https://t.me/tiendavende?text=Hola,%20estoy%20interesado%20en%20comprar%20el%20producto%20${encodeURIComponent(service)}%20por%20${encodeURIComponent(price)}`;
             
             // Mostrar el modal
             modal.style.display = 'flex';
@@ -2077,6 +2479,7 @@
             checkAuth();
             loadPublicServices();
             loadAnnouncements();
+            setupShareButtons();
             
             // Configurar el formulario de servicios
             addServiceForm.addEventListener('submit', handleServiceForm);
@@ -2191,6 +2594,9 @@
                 element.style.transition = 'all 0.6s ease-out';
                 observer.observe(element);
             });
+            
+            // Evento de búsqueda
+            searchInput.addEventListener('input', searchServices);
         });
 
         // Funciones globales para usar en los botones onclick
